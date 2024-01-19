@@ -4,7 +4,8 @@ param(
     [Parameter(Mandatory = $false)]
     [string] $OutputFile = "outputtypes.json"
 )
-
+Install-Module Az.Accounts -Repository PSGallery -Force
+Get-Module Az.Accounts
 $AzPreviewPath = Get-Item "$PSScriptRoot\AzPreview\AzPreview.psd1"
 Import-LocalizedData -BindingVariable ModuleMetadata -BaseDirectory $AzPreviewPath.DirectoryName -FileName $AzPreviewPath.Name
 $ModuleManifestFile = Get-ChildItem -Path "$PSScriptRoot\..\src" -Filter "*.psd1" -Recurse | Where-Object { $_.FullName -notlike "*autorest*" }
