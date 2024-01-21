@@ -122,8 +122,6 @@ $Errors = $null
 try {
     $modules = Get-AllModules -BuildConfig $BuildConfig -Scope $Scope -PublishLocal:$PublishLocal -IsNetCore:$IsNetCore
     Add-AllModules -ModulePaths $modules -TempRepo $tempRepoName -TempRepoPath $tempRepoPath -NugetExe $NugetExe
-    & "$PSScriptRoot/NewOutputTypeIndex.ps1" -OutputFile $packageFolder/outputtypes.json -BuildConfig $BuildConfig
-    & "$PSScriptRoot/CleanupBuild.ps1" -BuildConfig $BuildConfig -GenerateDocumentationFile $GenerateDocumentationFile
     Publish-AllModules -ModulePaths $modules -ApiKey $apiKey -TempRepoPath $tempRepoPath -RepoLocation $repositoryLocation -NugetExe $NugetExe -PublishLocal:$PublishLocal
 } catch {
     $Errors = $_
